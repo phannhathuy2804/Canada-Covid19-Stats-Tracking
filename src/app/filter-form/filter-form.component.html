@@ -1,0 +1,112 @@
+<form [formGroup]="filter" (ngSubmit)="onSubmit(filter.value)">
+  <div class="form-group">
+    <div class="stats">
+      <h4>Stats:</h4>
+      <div class="form-check form-check-inline">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="newCases"
+          id="newCases-checkbox"
+        />
+        <label for="newCases-checkbox">New Cases</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="cumulativeCases"
+          id="cumulativeCases-checkbox"
+        />
+        <label for="cumulativeCases-checkbox">Cumulative Cases</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="newDeaths"
+          id="newDeaths-checkbox"
+        />
+        <label for="newDeaths-checkbox ">New Deaths</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="cumulativeDeaths"
+          id="cumulativeDeaths-checkbox"
+        />
+        <label for="cumulativeDeaths-checkbox">Cumulative Deaths</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="newRecovered"
+          id="newRecovered-checkbox"
+        />
+        <label for="newRecovered-checkbox ">New Recovered</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="cumulativeRecovered"
+          id="cumulativeRecovered-checkbox"
+        />
+        <label for="cumulativeRecovered-checkbox ">Cumulative Recovered</label>
+      </div>
+    </div>
+    <div class="location">
+      <h4>Location</h4>
+      <div class="form-check form-check-inline">
+        <input
+          type="radio"
+          class="form-check-input"
+          formControlName="location"
+          id="federal-checkbox"
+          value="canada"
+        />
+        <label for="federal-checkbox ">Federal</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input
+          type="radio"
+          class="form-check-input"
+          formControlName="location"
+          id="provincial-checkbox"
+          value="prov"
+        />
+        <label for="provincial-checkbox ">Provincial</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          type="radio"
+          class="form-check-input"
+          formControlName="location"
+          id="hr-checkbox"
+          value="hr"
+        />
+        <label for="hr-checkbox ">Heal Regions</label>
+      </div>
+    </div>
+    <table class="location">
+      <h4>Dates</h4>
+      <tr id="startdate">
+        <td><label for="startdate-entry">Start Date: </label></td>
+        <td>
+          <input type="date" formControlName="startDate" id="startdate-entry" />
+        </td>
+      </tr>
+      <tr id="enddate">
+        <td><label for="enddate-entry">End Date:</label></td>
+        <td>
+          <input type="date" formControlName="endDate" id="enddate-entry" />
+        </td>
+      </tr>
+    </table>
+
+    <input type="submit" class="btn btn-primary btn-block" />
+  </div>
+</form>
