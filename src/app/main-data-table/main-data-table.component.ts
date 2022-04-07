@@ -18,4 +18,11 @@ export class MainDataTableComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  isLocHR(): boolean {
+    return this.filter_data.location == 'hr';
+  }
+  isNaN(value: number): boolean {
+    return Number.isNaN(value);
+  }
 }

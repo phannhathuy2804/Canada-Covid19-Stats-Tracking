@@ -3,6 +3,7 @@
   <thead>
     <tr>
       <th>Province</th>
+      <th [hidden]="!isLocHR()">Health Region</th>
       <th [hidden]="!filter_data.newCases">New Cases</th>
       <th [hidden]="!filter_data.cumulativeCases">Cumulative Cases</th>
       <th [hidden]="!filter_data.newDeaths">New Deaths</th>
@@ -12,9 +13,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of DataArr">
+    <tr
+      *ngFor="
+        let row of DataArr | calculateStatsProvincial: filter_data.location
+      "
+    >
       <td *ngIf="row.province != null; else NotAvailable">
         {{ row.province }}
+      </td>
+      <td [hidden]="!isLocHR()">
+        {{ row.health_region }}
       </td>
       <td
         *ngIf="row.cases != null; else NotAvailable"
@@ -41,18 +49,32 @@
         {{ row.cumulative_deaths }}
       </td>
       <td
-        *ngIf="row.recovered != null; else NotAvailable"
+        *ngIf="
+          row.recovered != null && !isNaN(row.recovered);
+          else NotAvailableNewRecovered
+        "
         [hidden]="!filter_data.newRecovered"
       >
         {{ row.recovered }}
       </td>
+
       <td
-        *ngIf="row.cumulative_recovered != null; else NotAvailable"
+        *ngIf="
+          row.cumulative_recovered != null;
+          else NotAvailableCumulativeRecovered
+        "
         [hidden]="!filter_data.cumulativeRecovered"
       >
         {{ row.cumulative_recovered }}
       </td>
     </tr>
-    <ng-template #NotAvailable> <td>N/A</td></ng-template>
+
+    <ng-template #NotAvailable>N/A</ng-template>
+    <ng-template #NotAvailableNewRecovered>
+      <td [hidden]="!filter_data.newRecovered">N/A</td></ng-template
+    >
+    <ng-template #NotAvailableCumulativeRecovered>
+      <td [hidden]="!filter_data.cumulativeRecovered">N/A</td></ng-template
+    >
   </tbody>
 </table>

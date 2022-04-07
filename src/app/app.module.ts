@@ -7,9 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainDataTableComponent } from './main-data-table/main-data-table.component';
 import { FilterFormComponent } from './filter-form/filter-form.component';
+import { CalculateStatsProvincialPipe } from './calculate-stats.pipe';
 
 @NgModule({
-  declarations: [AppComponent, MainDataTableComponent, FilterFormComponent],
+  declarations: [
+    AppComponent,
+    MainDataTableComponent,
+    FilterFormComponent,
+    CalculateStatsProvincialPipe,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

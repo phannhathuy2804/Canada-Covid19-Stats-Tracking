@@ -12,11 +12,12 @@ export interface filter_value {
 
 export interface fetched_data {
   province?: string;
-  cases?: number;
-  cumulative_cases?: number;
+  health_region?: string;
+  cases: number;
+  cumulative_cases: number;
   deaths: number;
   cumulative_deaths: number;
   recovered: number;
-  cumulative_recovered: number;
-  date: string;
+  cumulative_recovered?: number;
+  date?: string;
 }
