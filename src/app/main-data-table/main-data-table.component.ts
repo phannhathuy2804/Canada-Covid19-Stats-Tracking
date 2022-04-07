@@ -1,13 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-interface initData {
-  province: string;
-  cases: number;
-  deaths: number;
-  recovered: number;
-  date: string;
-}
+import { FetchDataService } from '../fetch-data.service';
+import { fetched_data } from '../utility/types';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-data-table',
@@ -15,23 +10,9 @@ interface initData {
   styleUrls: ['./main-data-table.component.css'],
 })
 export class MainDataTableComponent implements OnInit {
-  date: Date = new Date();
-  d: any;
-  initDataArr: initData[] = [];
-  constructor(private http: HttpClient) {}
+  @Input() DataArr: fetched_data[] = [];
 
-  ngOnInit(): void {
-    let date: Date = new Date();
-    let recentDate: Date = new Date(date);
-    recentDate.setDate(date.getDate() - 1);
-    let dateString: string = recentDate.toISOString().split('T')[0];
-    console.log(dateString);
-    let url: string = `https://api.opencovid.ca/summary?date=${dateString}`;
-    this.http.get<Object>(url).subscribe((data) => {
-      console.log(data);
-      this.d = data;
-      this.initDataArr = this.d.summary.map((e: initData) => e);
-      console.log(this.initDataArr);
-    });
-  }
+  constructor(private http: HttpClient, private data: FetchDataService) {}
+
+  ngOnInit(): void {}
 }

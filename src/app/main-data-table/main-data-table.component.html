@@ -1,4 +1,4 @@
-<p>Time Period: {{ initDataArr[0].date }} (latest)</p>
+<p>Time Period: {{ DataArr[0].date }} (latest)</p>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -9,11 +9,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of initDataArr">
-      <td>{{ row.province }}</td>
-      <td>{{ row.cases }}</td>
-      <td>{{ row.deaths }}</td>
-      <td>{{ row.recovered }}</td>
+    <tr *ngFor="let row of DataArr">
+      <td *ngIf="row.province != null; else NotAvailable">
+        {{ row.province }}
+      </td>
+      <td *ngIf="row.cases != null; else NotAvailable">{{ row.cases }}</td>
+      <td *ngIf="row.deaths != null; else NotAvailable">
+        {{ row.deaths }}
+      </td>
+      <td *ngIf="row.recovered != null; else NotAvailable">
+        {{ row.recovered }}
+      </td>
     </tr>
+    <ng-template #NotAvailable> <td>N/A</td></ng-template>
   </tbody>
 </table>
