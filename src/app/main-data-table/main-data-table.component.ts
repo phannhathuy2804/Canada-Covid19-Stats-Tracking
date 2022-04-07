@@ -22,7 +22,6 @@ export class MainDataTableComponent implements OnInit {
 
   ngOnInit(): void {
     let date: Date = new Date();
-
     let recentDate: Date = new Date(date);
     recentDate.setDate(date.getDate() - 1);
     let dateString: string = recentDate.toISOString().split('T')[0];
