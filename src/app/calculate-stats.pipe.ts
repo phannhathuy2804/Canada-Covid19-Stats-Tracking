@@ -7,6 +7,7 @@ import { fetched_data } from './utility/types';
 export class CalculateStatsProvincialPipe implements PipeTransform {
   transform(dataArr: fetched_data[], loc_option: string): any {
     let final_Arr: fetched_data[] = [];
+    console.log(loc_option);
     switch (loc_option) {
       case 'canada': {
         final_Arr = federal_stats(dataArr);
@@ -71,7 +72,7 @@ function provincial_stats(dataArr_prov: fetched_data[]) {
   let new_Arr: fetched_data[][] = [];
   let temp_Arr: fetched_data[] = [];
   let final_Arr: fetched_data[] = [];
-  dataArr_prov.forEach((element) => {
+  dataArr_prov.forEach((element, index) => {
     if (temp_Arr.length == 0) {
       temp_Arr.push(element);
     } else if (element.province == temp_Arr[0].province) {
@@ -80,6 +81,9 @@ function provincial_stats(dataArr_prov: fetched_data[]) {
       new_Arr.push(temp_Arr);
       temp_Arr = [];
       temp_Arr.push(element);
+    }
+    if (index == dataArr_prov.length - 1) {
+      new_Arr.push(temp_Arr);
     }
   });
   new_Arr.forEach((sub_Array) => {
@@ -113,7 +117,7 @@ function provincial_stats(dataArr_prov: fetched_data[]) {
     );
   });
   console.log(final_Arr);
-
+  console.log(dataArr_prov);
   return final_Arr;
 }
 
@@ -121,7 +125,7 @@ function hr_stats(dataArr_hr: fetched_data[]) {
   let new_Arr: fetched_data[][] = [];
   let temp_Arr: fetched_data[] = [];
   let final_Arr: fetched_data[] = [];
-  dataArr_hr.forEach((element) => {
+  dataArr_hr.forEach((element, index) => {
     if (temp_Arr.length == 0) {
       temp_Arr.push(element);
     } else if (element.health_region == temp_Arr[0].health_region) {
@@ -132,6 +136,7 @@ function hr_stats(dataArr_hr: fetched_data[]) {
       temp_Arr.push(element);
     }
   });
+  console.log();
   new_Arr.forEach((sub_Array) => {
     let initValue: fetched_data = {
       cases: 0,

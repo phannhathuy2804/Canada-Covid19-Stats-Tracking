@@ -2,14 +2,55 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Province</th>
-      <th [hidden]="!isLocHR()">Health Region</th>
-      <th [hidden]="!filter_data.newCases">New Cases</th>
-      <th [hidden]="!filter_data.cumulativeCases">Cumulative Cases</th>
-      <th [hidden]="!filter_data.newDeaths">New Deaths</th>
-      <th [hidden]="!filter_data.cumulativeDeaths">Cumulative Deaths</th>
-      <th [hidden]="!filter_data.newRecovered">New Recovered</th>
-      <th [hidden]="!filter_data.cumulativeRecovered">Cumulative Recovered</th>
+      <th (click)="sortFunction('province', booleanValue)">Province</th>
+      <th
+        [hidden]="!isLocHR()"
+        (click)="sortFunction('health_region', booleanValue)"
+      >
+        Health Region
+      </th>
+      <th
+        scope="col"
+        [hidden]="!filter_data.newCases"
+        (click)="sortFunction('cases', booleanValue)"
+      >
+        New Cases
+      </th>
+      <th
+        [hidden]="!filter_data.cumulativeCases"
+        scope="col"
+        (click)="sortFunction('cumulative_cases', booleanValue)"
+      >
+        Cumulative Cases
+      </th>
+      <th
+        [hidden]="!filter_data.newDeaths"
+        scope="col"
+        (click)="sortFunction('deaths', booleanValue)"
+      >
+        New Deaths
+      </th>
+      <th
+        [hidden]="!filter_data.cumulativeDeaths"
+        scope="col"
+        (click)="sortFunction('cumulative_deaths', booleanValue)"
+      >
+        Cumulative Deaths
+      </th>
+      <th
+        [hidden]="!filter_data.newRecovered"
+        scope="col"
+        (click)="sortFunction('recovered', booleanValue)"
+      >
+        New Recovered
+      </th>
+      <th
+        [hidden]="!filter_data.cumulativeRecovered"
+        scope="col"
+        (click)="sortFunction('cumulative_recovered', booleanValue)"
+      >
+        Cumulative Recovered
+      </th>
     </tr>
   </thead>
   <tbody>

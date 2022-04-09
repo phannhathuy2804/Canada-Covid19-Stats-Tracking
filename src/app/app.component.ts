@@ -21,11 +21,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.filter_service.filter_data);
     this.data.fetch_data().subscribe((data) => {
       this.d = data;
       this.DataArr = this.d.summary.map((e: fetched_data) => e);
-      console.log(this.DataArr);
     });
   }
   onSubmitFilter(event: any): void {
