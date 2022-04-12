@@ -12,16 +12,26 @@ import { CalculateStatsProvincialPipe } from '../calculate-stats.pipe';
   styleUrls: ['./main-data-table.component.css'],
 })
 export class MainDataTableComponent implements OnInit {
-  @Input() DataArr: fetched_data[] = [];
+  DataArr: fetched_data[] = [];
   filter_data: filter_value;
   booleanValue: any = false;
   calculated_Arr: fetched_data[] = [];
+  d: any;
 
-  constructor(private http: HttpClient, private filter: FilterService) {
-    this.filter_data = filter.filter_data;
+  constructor(
+    private http: HttpClient,
+    private filter_service: FilterService,
+    private data: FetchDataService
+  ) {
+    this.filter_data = filter_service.filter_data;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.data.fetch_data().subscribe((data) => {
+      this.d = data;
+      this.DataArr = this.d.summary.map((e: fetched_data) => e);
+    });
+  }
 
   isLocHR(): boolean {
     return this.filter_data.location == 'hr';
@@ -46,5 +56,12 @@ export class MainDataTableComponent implements OnInit {
       );
       this.booleanValue = !this.booleanValue;
     }
+  }
+  onSubmitFilter(event: any): void {
+    console.log(this.filter_service.filter_data);
+    this.data.fetch_data().subscribe((data) => {
+      this.d = data;
+      this.DataArr = this.d.summary.map((e: fetched_data) => e);
+    });
   }
 }

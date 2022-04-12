@@ -1,3 +1,6 @@
 <h1>{{ title }}</h1>
-<app-filter-form (submitFilter)="onSubmitFilter($event)"></app-filter-form>
-<app-main-data-table [DataArr]="DataArr"></app-main-data-table>
+<div class="container">
+  <a class="navbar-brand" routerLink="/">Home</a>
+  <a class="navbar-brand" routerLink="/graphs">Charts</a>
+</div>
+<router-outlet></router-outlet>

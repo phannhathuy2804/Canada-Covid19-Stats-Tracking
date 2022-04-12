@@ -9,19 +9,22 @@ export class FilterService {
   constructor() {
     let date: Date = new Date();
     let recentDate: Date = new Date(date);
+    let recentDate2: Date = new Date(date);
     recentDate.setDate(date.getDate() - 1);
-    let dateString: string = recentDate.toISOString().split('T')[0];
+    recentDate2.setDate(date.getDate() - 2);
+    let initDate2: string = recentDate2.toISOString().split('T')[0];
 
+    let initDate: string = recentDate.toISOString().split('T')[0];
     this.filter_data = {
-      newCases: true,
-      cumulativeCases: false,
-      newDeaths: true,
-      cumulativeDeaths: false,
-      newRecovered: true,
-      cumulativeRecovered: false,
+      cases: true,
+      cumulative_cases: false,
+      deaths: true,
+      cumulative_deaths: false,
+      recovered: true,
+      cumulative_recovered: false,
       location: 'prov',
-      startDate: '',
-      endDate: '',
+      startDate: initDate2,
+      endDate: initDate,
     };
   }
 }

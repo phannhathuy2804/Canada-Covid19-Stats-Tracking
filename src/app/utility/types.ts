@@ -1,13 +1,14 @@
 export interface filter_value {
-  newCases: boolean;
-  cumulativeCases: boolean;
-  newDeaths: boolean;
-  cumulativeDeaths: boolean;
-  newRecovered: boolean;
-  cumulativeRecovered: boolean;
+  cases: boolean;
+  cumulative_cases: boolean;
+  deaths: boolean;
+  cumulative_deaths: boolean;
+  recovered: boolean;
+  cumulative_recovered: boolean;
   location: string;
   startDate: string;
   endDate: string;
+  [key: string]: any;
 }
 
 export interface fetched_data {
@@ -20,4 +21,5 @@ export interface fetched_data {
   recovered: number;
   cumulative_recovered?: number;
   date?: string;
+  [key: string]: any;
 }

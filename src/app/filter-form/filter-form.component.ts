@@ -29,15 +29,21 @@ export class FilterFormComponent implements OnInit {
     let dateString: string = recentDate.toISOString().split('T')[0];
 
     this.filter = new FormGroup({
-      newCases: new FormControl(true),
-      cumulativeCases: new FormControl(false),
-      newDeaths: new FormControl(true),
-      cumulativeDeaths: new FormControl(false),
-      newRecovered: new FormControl(true),
-      cumulativeRecovered: new FormControl(false),
-      location: new FormControl('prov'),
-      startDate: new FormControl(recentDate.toISOString().split('T')[0]),
-      endDate: new FormControl(recentDate.toISOString().split('T')[0]),
+      newCases: new FormControl(this.filter_service.filter_data.cases),
+      cumulativeCases: new FormControl(
+        this.filter_service.filter_data.cumulative_cases
+      ),
+      newDeaths: new FormControl(this.filter_service.filter_data.deaths),
+      cumulativeDeaths: new FormControl(
+        this.filter_service.filter_data.cumulative_deaths
+      ),
+      newRecovered: new FormControl(this.filter_service.filter_data.recovered),
+      cumulativeRecovered: new FormControl(
+        this.filter_service.filter_data.cumulative_recovered
+      ),
+      location: new FormControl(this.filter_service.filter_data.location),
+      startDate: new FormControl(this.filter_service.filter_data.startDate),
+      endDate: new FormControl(this.filter_service.filter_data.endDate),
     });
   }
 
@@ -45,18 +51,18 @@ export class FilterFormComponent implements OnInit {
     if (Date.parse(filterData.startDate) > Date.parse(filterData.endDate)) {
       window.alert('Start date must equal or less than end date');
     } else {
-      this.filter_service.filter_data.newCases = <boolean>filterData.newCases;
-      this.filter_service.filter_data.cumulativeCases = <boolean>(
+      this.filter_service.filter_data.cases = <boolean>filterData.newCases;
+      this.filter_service.filter_data.cumulative_cases = <boolean>(
         filterData.cumulativeCases
       );
-      this.filter_service.filter_data.newDeaths = <boolean>filterData.newDeaths;
-      this.filter_service.filter_data.cumulativeDeaths = <boolean>(
+      this.filter_service.filter_data.deaths = <boolean>filterData.newDeaths;
+      this.filter_service.filter_data.cumulative_deaths = <boolean>(
         filterData.cumulativeDeaths
       );
-      this.filter_service.filter_data.newRecovered = <boolean>(
+      this.filter_service.filter_data.recovered = <boolean>(
         filterData.newRecovered
       );
-      this.filter_service.filter_data.cumulativeRecovered = <boolean>(
+      this.filter_service.filter_data.cumulative_recovered = <boolean>(
         filterData.cumulativeRecovered
       );
       this.filter_service.filter_data.location = <string>filterData.location;

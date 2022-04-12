@@ -1,3 +1,4 @@
+<app-filter-form (submitFilter)="onSubmitFilter($event)"> </app-filter-form>
 <p>Time Period: {{ DataArr[0].date }} (latest)</p>
 <table class="table table-bordered">
   <thead>
@@ -11,41 +12,41 @@
       </th>
       <th
         scope="col"
-        [hidden]="!filter_data.newCases"
+        [hidden]="!filter_data.cases"
         (click)="sortFunction('cases', booleanValue)"
       >
         New Cases
       </th>
       <th
-        [hidden]="!filter_data.cumulativeCases"
+        [hidden]="!filter_data.cumulative_cases"
         scope="col"
         (click)="sortFunction('cumulative_cases', booleanValue)"
       >
         Cumulative Cases
       </th>
       <th
-        [hidden]="!filter_data.newDeaths"
+        [hidden]="!filter_data.deaths"
         scope="col"
         (click)="sortFunction('deaths', booleanValue)"
       >
         New Deaths
       </th>
       <th
-        [hidden]="!filter_data.cumulativeDeaths"
+        [hidden]="!filter_data.cumulative_deaths"
         scope="col"
         (click)="sortFunction('cumulative_deaths', booleanValue)"
       >
         Cumulative Deaths
       </th>
       <th
-        [hidden]="!filter_data.newRecovered"
+        [hidden]="!filter_data.recovered"
         scope="col"
         (click)="sortFunction('recovered', booleanValue)"
       >
         New Recovered
       </th>
       <th
-        [hidden]="!filter_data.cumulativeRecovered"
+        [hidden]="!filter_data.cumulative_recovered"
         scope="col"
         (click)="sortFunction('cumulative_recovered', booleanValue)"
       >
@@ -67,25 +68,25 @@
       </td>
       <td
         *ngIf="row.cases != null; else NotAvailable"
-        [hidden]="!filter_data.newCases"
+        [hidden]="!filter_data.cases"
       >
         {{ row.cases }}
       </td>
       <td
         *ngIf="row.cumulative_cases != null; else NotAvailable"
-        [hidden]="!filter_data.cumulativeCases"
+        [hidden]="!filter_data.cumulative_cases"
       >
         {{ row.cumulative_cases }}
       </td>
       <td
         *ngIf="row.deaths != null; else NotAvailable"
-        [hidden]="!filter_data.newDeaths"
+        [hidden]="!filter_data.deaths"
       >
         {{ row.deaths }}
       </td>
       <td
         *ngIf="row.cumulative_deaths != null; else NotAvailable"
-        [hidden]="!filter_data.cumulativeDeaths"
+        [hidden]="!filter_data.cumulative_deaths"
       >
         {{ row.cumulative_deaths }}
       </td>
@@ -94,7 +95,7 @@
           row.recovered != null && !isNaN(row.recovered);
           else NotAvailableNewRecovered
         "
-        [hidden]="!filter_data.newRecovered"
+        [hidden]="!filter_data.recovered"
       >
         {{ row.recovered }}
       </td>
@@ -104,7 +105,7 @@
           row.cumulative_recovered != null;
           else NotAvailableCumulativeRecovered
         "
-        [hidden]="!filter_data.cumulativeRecovered"
+        [hidden]="!filter_data.cumulative_recovered"
       >
         {{ row.cumulative_recovered }}
       </td>
@@ -112,10 +113,10 @@
 
     <ng-template #NotAvailable>N/A</ng-template>
     <ng-template #NotAvailableNewRecovered>
-      <td [hidden]="!filter_data.newRecovered">N/A</td></ng-template
+      <td [hidden]="!filter_data.recovered">N/A</td></ng-template
     >
     <ng-template #NotAvailableCumulativeRecovered>
-      <td [hidden]="!filter_data.cumulativeRecovered">N/A</td></ng-template
+      <td [hidden]="!filter_data.cumulative_recovered">N/A</td></ng-template
     >
   </tbody>
 </table>
