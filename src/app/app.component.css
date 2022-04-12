@@ -1,0 +1,12 @@
+h1 {
+  float: left;
+}
+
+.navbar-options {
+  margin: 1rem;
+  font-size: medium;
+}
+
+nav {
+  background-color: wheat;
+}

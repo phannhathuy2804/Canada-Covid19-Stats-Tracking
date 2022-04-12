@@ -1,6 +1,13 @@
-<h1>{{ title }}</h1>
 <div class="container">
-  <a class="navbar-brand" routerLink="/">Home</a>
-  <a class="navbar-brand" routerLink="/graphs">Charts</a>
+  <nav class="navbar">
+    <span
+      ><h1>{{ title }}</h1></span
+    >
+    <div class="option">
+      <a class="navbar-options" routerLink="/">Home</a>
+      <a class="navbar-options" routerLink="/graphs">Charts</a>
+      <a class="navbar-options" routerLink="/history">History</a>
+    </div>
+  </nav>
 </div>
 <router-outlet></router-outlet>

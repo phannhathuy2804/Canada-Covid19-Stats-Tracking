@@ -1,0 +1,30 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Time Saved</th>
+      <th>Stat</th>
+      <th>Location</th>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of history_data">
+      <td>{{ row.time_saved }}</td>
+      <td>{{ row.stats }}</td>
+      <td>{{ row.location }}</td>
+      <td>{{ row.time }}</td>
+      <td>
+        <button class="btn btn-primary btn-block" (click)="onDelete(row)">
+          Delete
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-primary btn-block" (click)="onDisplay(row)">
+          Display
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

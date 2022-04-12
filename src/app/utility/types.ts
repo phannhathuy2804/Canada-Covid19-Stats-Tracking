@@ -23,3 +23,11 @@ export interface fetched_data {
   date?: string;
   [key: string]: any;
 }
+
+export interface Saving_format {
+  id: number;
+  time_saved: string;
+  stats: string[];
+  location: string[];
+  time: string[];
+}

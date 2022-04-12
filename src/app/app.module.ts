@@ -11,6 +11,8 @@ import { FilterFormComponent } from './filter-form/filter-form.component';
 import { CalculateStatsProvincialPipe } from './calculate-stats.pipe';
 import { GraphsComponent } from './graphs/graphs.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { HistoryTableComponent } from './history-table/history-table.component';
+import { ConvertDataPipe } from './convert-data.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
     CalculateStatsProvincialPipe,
     GraphsComponent,
     BarChartComponent,
+    HistoryTableComponent,
+    ConvertDataPipe,
   ],
   imports: [
     BrowserModule,
