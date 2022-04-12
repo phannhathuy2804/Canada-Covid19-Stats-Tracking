@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { filter_value } from '../utility/types';
+import { filter_value, Saving_format } from '../utility/types';
 import { FilterService } from '../filter.service';
+import { DataManagerService } from '../data-manager.service';
 
 @Component({
   selector: 'app-filter-form',
@@ -19,7 +20,8 @@ export class FilterFormComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private filter_service: FilterService
+    private filter_service: FilterService,
+    private saving_service: DataManagerService
   ) {}
 
   ngOnInit(): void {
@@ -70,5 +72,32 @@ export class FilterFormComponent implements OnInit {
       this.filter_service.filter_data.endDate = <string>filterData.endDate;
       this.submitFilter.emit(this.filter_service.filter_data);
     }
+  }
+
+  onSave(): void {
+    this.onSubmit(this.filter.value);
+    let saving_data: Saving_format = {
+      id: Date.now(),
+      time_saved: '',
+      stats: [],
+      location: [],
+      time: [],
+    };
+    saving_data.time_saved = new Date().toISOString();
+    for (let i in this.filter_service.filter_data) {
+      if (this.filter_service.filter_data[i] == true)
+        saving_data.stats.push(i.toString());
+    }
+    if (this.filter_service.filter_data.location == 'canada') {
+      saving_data.location.push('canada');
+    } else if (this.filter_service.filter_data.location == 'prov') {
+      saving_data.location.push('prov');
+    } else this.filter_service.filter_data.location == 'health_region';
+    saving_data.time.push(this.filter_service.filter_data.startDate);
+    saving_data.time.push(this.filter_service.filter_data.endDate);
+    this.saving_service.PostHitory(saving_data).subscribe((data) => {
+      alert('This filter has been saved!');
+      console.log(data);
+    });
   }
 }
